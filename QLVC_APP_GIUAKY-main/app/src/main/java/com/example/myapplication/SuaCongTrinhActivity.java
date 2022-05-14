@@ -41,7 +41,7 @@ public class SuaCongTrinhActivity extends AppCompatActivity {
             CongTrinh CT = new CongTrinh(dt.getString(0), dt.getString(1), dt.getString(2));
             ArrCT.add(CT);
         }
-        CustomAdapter_CongTrinh adapter = new CustomAdapter_CongTrinh(ArrCT);
+        CustomAdapter_CongTrinh adapter = new CustomAdapter_CongTrinh(ArrCT, this, R.layout.item_dsct);
         CongTrinh ct = (CongTrinh) adapter.getItem(POSITION);
         edtTenCT.setText(ct.getTenCT());
         edtDiaChi.setText(ct.getDiaChi());

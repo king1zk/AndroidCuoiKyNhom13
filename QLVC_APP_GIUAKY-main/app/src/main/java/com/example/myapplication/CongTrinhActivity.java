@@ -38,17 +38,17 @@ public class CongTrinhActivity extends AppCompatActivity {
             CongTrinh CT = new CongTrinh(dt.getString(0), dt.getString(1), dt.getString(2));
             ArrCT.add(CT);
         }
-        CustomAdapter_CongTrinh adapter = new CustomAdapter_CongTrinh(ArrCT);
+        CustomAdapter_CongTrinh adapter = new CustomAdapter_CongTrinh(ArrCT, this, R.layout.item_dsct );
         listViewCT.setAdapter(adapter);
 
-        listViewCT.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //POSITION = position;
-                Intent intent = new Intent(CongTrinhActivity.this, SuaCongTrinhActivity.class);
-                startActivity(intent);
-            }
-        });
+//        listViewCT.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                //POSITION = position;
+//                Intent intent = new Intent(CongTrinhActivity.this, SuaCongTrinhActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         imgbtn_addct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

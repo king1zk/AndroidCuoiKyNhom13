@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,10 +19,14 @@ import static androidx.core.content.ContextCompat.startActivity;
 
 public class CustomAdapter_VatTu extends BaseAdapter {
     ArrayList<VatTu> arrayList;
+    Context context;
+    int layout;
     private DBHelper DBhelper;
 
-    public CustomAdapter_VatTu(ArrayList<VatTu> arrayList) {
+    public CustomAdapter_VatTu(ArrayList<VatTu> arrayList, Context context, int layout) {
         this.arrayList = arrayList;
+        this.context = context;
+        this.layout = layout;
     }
 
     @Override
@@ -56,6 +61,14 @@ public class CustomAdapter_VatTu extends BaseAdapter {
         //hiển thị hình ảnh dưới dạng byte
         Bitmap bitmap = BitmapFactory.decodeByteArray(VT.getHinh(), 0, VT.getHinh().length);
         tvHinh.setImageBitmap(bitmap);
+        ImageView btnEditVT = viewitem.findViewById(R.id.btnUpdate11);
+        btnEditVT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SuaVTActivity.class);
+                context.startActivity(intent);
+            }
+        });
         ImageView btnDelete = viewitem.findViewById(R.id.btnDelete);
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override

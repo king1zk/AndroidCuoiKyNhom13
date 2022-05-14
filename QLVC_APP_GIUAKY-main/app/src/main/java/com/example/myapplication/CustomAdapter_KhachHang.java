@@ -1,5 +1,9 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.ext.ConstExt.POSITION;
+
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -13,10 +17,14 @@ import java.util.ArrayList;
 
 public class CustomAdapter_KhachHang extends BaseAdapter {
     ArrayList<KH> arrayList;
-    private DBHelper DBhelper;
+    Context context;
+    int layout;
+    DBHelper DBhelper;
 
-    public CustomAdapter_KhachHang(ArrayList<KH> arrayList) {
+    public CustomAdapter_KhachHang(ArrayList<KH> arrayList, Context context, int layout) {
         this.arrayList = arrayList;
+        this.context = context;
+        this.layout = layout;
     }
 
     @Override
@@ -59,6 +67,15 @@ public class CustomAdapter_KhachHang extends BaseAdapter {
                 }
                 arrayList.remove(position);
                 notifyDataSetChanged();
+            }
+        });
+        ImageView btnEditKH = viewitem.findViewById(R.id.btnEditKH);
+        btnEditKH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                POSITION = position;
+                Intent intent = new Intent(context, SuaKHActivity.class);
+                context.startActivity(intent);
             }
         });
         ImageView btnSendMail = viewitem.findViewById(R.id.btnSendMail);

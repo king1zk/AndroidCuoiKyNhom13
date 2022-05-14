@@ -114,13 +114,13 @@ public void updateVT(String tenVT, String dvTinh, Float giaVC,byte[] hinh,int ma
 }
     public void updateKH(String hoTenKH, String Email, String Sdt,int maKH) {
         SQLiteDatabase db = getWritableDatabase();
-        String sql = "Update KH set hoTenKH= ?,email=?,sdt =?,maPVC=? where maKH=?";
+        String sql = "Update KH set hoTenKH= ?,email=?,sdt =? where maKH=?";
         SQLiteStatement statement = db.compileStatement(sql);
         statement.clearBindings();
         statement.bindString(1, hoTenKH);
         statement.bindString(2, Email);
         statement.bindString(3, Sdt);
-        statement.bindLong(5, maKH);
+        statement.bindLong(4, maKH);
         statement.executeUpdateDelete();
     }
 

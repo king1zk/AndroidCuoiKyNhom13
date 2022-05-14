@@ -42,14 +42,8 @@ public class CustomAdapter_PVC extends BaseAdapter {
         tvMaPVC.setText(String.valueOf(PVC.getMaPVC()));
         TextView tvNgay = (TextView) viewitem.findViewById(R.id.tvNgayVC);
         tvNgay.setText(PVC.getNgayVC());
-        TextView tvTenCT = (TextView) viewitem.findViewById(R.id.tvTenCT);
-        Cursor dt = DBhelper.GetData("select tenCT from congtrinh where maCT = '"+PVC.getMaCT()+"'");
-        try{
-            tvTenCT.setText(dt.getString(1));
-        }catch (Exception e){
-            System.out.print(e.toString());
-        }
-
+        TextView tvTenCT = (TextView) viewitem.findViewById(R.id.tvMaCT);
+        tvTenCT.setText(PVC.getMaCT());
 
         ImageView btnDelete = viewitem.findViewById(R.id.btnDelete);
         btnDelete.setOnClickListener(new View.OnClickListener() {

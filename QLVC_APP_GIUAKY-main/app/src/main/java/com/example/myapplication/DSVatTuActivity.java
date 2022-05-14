@@ -45,17 +45,8 @@ public class DSVatTuActivity extends AppCompatActivity {
             VatTu VT = new VatTu(dt.getInt(0), dt.getString(1), dt.getString(2), dt.getFloat(3), dt.getBlob(4));
             ArrVT.add(VT);
         }
-        CustomAdapter_VatTu adapter = new CustomAdapter_VatTu(ArrVT);
+        CustomAdapter_VatTu adapter = new CustomAdapter_VatTu(ArrVT, this, R.layout.item_dsvt);
         listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                POSITION = position;
-                Intent intent = new Intent(DSVatTuActivity.this, SuaVTActivity.class);
-                startActivity(intent);
-            }
-        });
 
         imgbtn_addvt.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -42,17 +42,17 @@ public class KhachHangActivity extends AppCompatActivity {
             KH KH = new KH(kh.getInt(0), kh.getString(1), kh.getString(2), kh.getString(3));
             ArrKH.add(KH);
         }
-        CustomAdapter_KhachHang adapter = new CustomAdapter_KhachHang(ArrKH);
+        CustomAdapter_KhachHang adapter = new CustomAdapter_KhachHang(ArrKH, this, R.layout.item_dskh);
         listViewKH.setAdapter(adapter);
-
-        listViewKH.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                POSITION = position;
-                Intent intent = new Intent(KhachHangActivity.this, SuaKHActivity.class);
-                startActivity(intent);
-            }
-        });
+//
+//        listViewKH.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                POSITION = position;
+//                Intent intent = new Intent(KhachHangActivity.this, SuaKHActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         imgbtn_addkh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
