@@ -128,7 +128,7 @@ public class CustomAdapter_KhachHang extends BaseAdapter {
                 intent.putExtra(Intent.EXTRA_SUBJECT, edtSubjectMail.getText().toString());
                 intent.putExtra(Intent.EXTRA_TEXT, editMessageMail.getText().toString());
                 intent.setType("message/rfc822");
-                context.startActivity(Intent.createChooser(intent, "Send mail" ));
+                context.startActivity(Intent.createChooser(intent, "Choose " ));
             }
         });
         dialog.show();
