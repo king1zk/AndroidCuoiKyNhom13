@@ -12,13 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import static com.example.myapplication.ext.ConstExt.POSITION;
 
+import com.example.myapplication.Adapter.CustomAdapter_CongTrinh;
 import com.example.myapplication.Model.CongTrinh;
 
 public class SuaCongTrinhActivity extends AppCompatActivity {

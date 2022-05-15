@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Adapter;
 import static com.example.myapplication.ext.ConstExt.POSITION;
 import android.content.Context;
 import android.content.Intent;

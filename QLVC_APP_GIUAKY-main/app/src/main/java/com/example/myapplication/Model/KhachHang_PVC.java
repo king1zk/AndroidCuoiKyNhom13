@@ -4,14 +4,14 @@ import java.util.Date;
 
 public class KhachHang_PVC {
     int maKH;
-    Boolean trangThai;
+    int trangThai;
     String ngayTT;
     String maPVC;
 
     public KhachHang_PVC() {
     }
 
-    public KhachHang_PVC(int maKH, Boolean trangThai, String ngayTT, String maPVC) {
+    public KhachHang_PVC(int maKH, int trangThai, String ngayTT, String maPVC) {
         this.maKH = maKH;
         this.trangThai = trangThai;
         this.ngayTT = ngayTT;
@@ -26,11 +26,11 @@ public class KhachHang_PVC {
         this.maKH = maKH;
     }
 
-    public Boolean getTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(Boolean trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
 

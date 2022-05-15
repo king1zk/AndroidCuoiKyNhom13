@@ -12,6 +12,7 @@
         <entry key="..\:/Users/Dell/Desktop/AndroidCuoiKyNhom13/QLVC_APP_GIUAKY-main/app/src/main/res/layout/activity_chi_tiet_pvc.xml" value="0.264" />
         <entry key="..\:/Users/Dell/Desktop/AndroidCuoiKyNhom13/QLVC_APP_GIUAKY-main/app/src/main/res/layout/activity_cong_trinh.xml" value="0.19074074074074074" />
         <entry key="..\:/Users/Dell/Desktop/AndroidCuoiKyNhom13/QLVC_APP_GIUAKY-main/app/src/main/res/layout/activity_dsvt.xml" value="0.2222222222222222" />
+        <entry key="..\:/Users/Dell/Desktop/AndroidCuoiKyNhom13/QLVC_APP_GIUAKY-main/app/src/main/res/layout/activity_in_chi_tiet_phieu.xml" value="0.264" />
         <entry key="..\:/Users/Dell/Desktop/AndroidCuoiKyNhom13/QLVC_APP_GIUAKY-main/app/src/main/res/layout/activity_kh_pvc.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/Dell/Desktop/AndroidCuoiKyNhom13/QLVC_APP_GIUAKY-main/app/src/main/res/layout/activity_khach_hang.xml" value="0.2" />
         <entry key="..\:/Users/Dell/Desktop/AndroidCuoiKyNhom13/QLVC_APP_GIUAKY-main/app/src/main/res/layout/activity_main.xml" value="0.264" />
@@ -37,7 +38,10 @@
         <entry key="..\:/Users/Dell/Desktop/AndroidCuoiKyNhom13/QLVC_APP_GIUAKY-main/app/src/main/res/layout/item_pvc.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/Dell/Desktop/AndroidCuoiKyNhom13/QLVC_APP_GIUAKY-main/app/src/main/res/layout/map.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/Dell/Desktop/AndroidCuoiKyNhom13/QLVC_APP_GIUAKY-main/app/src/main/res/layout/sendmail.xml" value="0.2222222222222222" />
+        <entry key="..\:/Users/Dell/Desktop/AndroidCuoiKyNhom13/QLVC_APP_GIUAKY-main/app/src/main/res/layout/spn_pvc.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/Dell/Desktop/AndroidCuoiKyNhom13/QLVC_APP_GIUAKY-main/app/src/main/res/layout/viewmap.xml" value="0.2222222222222222" />
+        <entry key="..\:/Users/Dell/Desktop/AndroidCuoiKyNhom13/QLVC_APP_GIUAKY-main/app/src/main/res/menu/menu_back.xml" value="0.1162037037037037" />
+        <entry key="..\:/Users/Dell/Desktop/AndroidCuoiKyNhom13/QLVC_APP_GIUAKY-main/app/src/main/res/menu/menu_danhsach.xml" value="0.1162037037037037" />
       </map>
     </option>
   </component>

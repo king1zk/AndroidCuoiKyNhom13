@@ -13,10 +13,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.myapplication.Adapter.CustomSpinerAdapterVT;
 import com.example.myapplication.Model.PhieuVanChuyen;
 import com.example.myapplication.Model.VatTu;
 

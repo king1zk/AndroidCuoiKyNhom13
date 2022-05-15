@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+import com.example.myapplication.Adapter.CustomAdapter_VatTu;
 import com.example.myapplication.Model.VatTu;
 
 public class DSVatTuActivity extends AppCompatActivity {

@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+import com.example.myapplication.Adapter.CustomAdapter_KhachHang;
 import com.example.myapplication.Model.KH;
 
 public class KhachHangActivity extends AppCompatActivity {

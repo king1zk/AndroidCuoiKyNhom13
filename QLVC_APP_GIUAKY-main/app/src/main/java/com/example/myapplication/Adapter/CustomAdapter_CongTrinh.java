@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Adapter;
 
 import static com.example.myapplication.ext.ConstExt.POSITION;
 

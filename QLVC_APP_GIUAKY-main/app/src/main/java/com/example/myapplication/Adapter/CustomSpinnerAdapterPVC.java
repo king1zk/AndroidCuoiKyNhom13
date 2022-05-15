@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,19 +9,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.DBHelper;
+import com.example.myapplication.Model.PhieuVanChuyen;
 import com.example.myapplication.Model.VatTu;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
 
-public class CustomSpinerAdapterVT extends BaseAdapter {
+public class CustomSpinnerAdapterPVC extends BaseAdapter {
     DBHelper DBhelper;
-    ArrayList<VatTu> arrayList;
+    ArrayList<PhieuVanChuyen> arrayList;
 
-    public CustomSpinerAdapterVT(ArrayList<VatTu> arrayList) {
+    public CustomSpinnerAdapterPVC(ArrayList<PhieuVanChuyen> arrayList) {
         this.arrayList = arrayList;
     }
-
     @Override
     public int getCount() {
         return arrayList.size();
@@ -40,16 +40,14 @@ public class CustomSpinerAdapterVT extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         DBhelper= new DBHelper(parent.getContext(),"qlvc.sqlite",null,1);
-        View viewitem= View.inflate(parent.getContext(), R.layout.dong_xem_vat_tu,null);
-        VatTu VT= (VatTu) getItem(position);
-        TextView tvTenVT =(TextView) viewitem.findViewById(R.id.tvXemTenSP);
-        tvTenVT.setText("Tên Vật Tư: "+VT.getTenVt());
-        TextView tvGia =(TextView) viewitem.findViewById(R.id.tvXemGiaSP);
-        tvGia.setText("Giá VC: "+String.valueOf(VT.getGiaVc()));
-        ImageView tvHinh =(ImageView) viewitem.findViewById(R.id.ivXemHinhSP);
-        Bitmap bitmap= BitmapFactory.decodeByteArray(VT.getHinh(), 0, VT.getHinh().length);
-        tvHinh.setImageBitmap(bitmap);
-
+        View viewitem= View.inflate(parent.getContext(), R.layout.spn_pvc,null);
+        PhieuVanChuyen pvc= (PhieuVanChuyen) getItem(position);
+        TextView tvMaPVC =(TextView) viewitem.findViewById(R.id.tvMaPVC_KH);
+        tvMaPVC.setText(pvc.getMaPVC());
+        TextView tvMaCT =(TextView) viewitem.findViewById(R.id.tvMaCT_KH);
+        tvMaCT.setText(pvc.getMaCT());
+        TextView tvNgayVC = (TextView) viewitem.findViewById(R.id.tvNgayVC_KH);
+        tvNgayVC.setText(pvc.getNgayVC());
         return viewitem;
     }
 }

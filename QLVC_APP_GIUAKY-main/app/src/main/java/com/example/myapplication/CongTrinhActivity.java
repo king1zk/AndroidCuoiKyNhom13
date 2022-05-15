@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.example.myapplication.Adapter.CustomAdapter_CongTrinh;
 import com.example.myapplication.Model.CongTrinh;
 
 import java.util.ArrayList;

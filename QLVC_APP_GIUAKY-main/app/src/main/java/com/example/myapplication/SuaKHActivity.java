@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import static com.example.myapplication.ext.ConstExt.POSITION;
 
+import com.example.myapplication.Adapter.CustomAdapter_KhachHang;
 import com.example.myapplication.Model.KH;
 
 public class SuaKHActivity extends AppCompatActivity {

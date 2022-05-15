@@ -77,7 +77,11 @@ public class MainActivity extends AppCompatActivity {
         DBhelper.QueryData("create table if not exists PVC(maPVC nchar(10) primary key, ngayVC date, maCT varchar(30), FOREIGN KEY(maCT) REFERENCES congtrinh(maCT) )");
         DBhelper.QueryData("create table if not exists chitietPVC( maPVC nchar(10), maVT int, soluong int, culy int,PRIMARY KEY (maPVC, maVT) FOREIGN KEY(maPVC) REFERENCES PVC(maPVC),  FOREIGN KEY (maVT) REFERENCES vattu(maVT))");
         DBhelper.QueryData("create table if not exists KH(maKH integer primary key Autoincrement,hoTenKH nvarchar(50),email varchar(50),sdt varchar(13))");
-        DBhelper.QueryData("create table if not exists KH_PVC(maKH integer, maPVC nchar(10), tinhtrang bit, NgayThanhToan date,PRIMARY KEY (maKH, maPVC) FOREIGN KEY(maPVC) REFERENCES PVC(maPVC),  FOREIGN KEY (maKH) REFERENCES KH(maKH), UNIQUE(maPVC)) ");
+        try{
+            DBhelper.QueryData("create table if not exists KH_PVC(maKH integer, maPVC nchar(10), tinhtrang bit, NgayThanhToan date,PRIMARY KEY (maKH, maPVC) FOREIGN KEY(maPVC) REFERENCES PVC(maPVC),  FOREIGN KEY (maKH) REFERENCES KH(maKH), unique(maPVC))");
+        }catch (Exception e){
+            System.out.print(e.toString());
+        }
 
     }
 }
