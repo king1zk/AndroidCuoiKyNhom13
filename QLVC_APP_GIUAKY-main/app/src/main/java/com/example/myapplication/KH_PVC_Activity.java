@@ -88,6 +88,8 @@ public class KH_PVC_Activity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    //Dialog Them Khách hàng - Phiếu vận chuyển
     private void Dialog_ThemPVC_KH() {
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_themkh_pvc);

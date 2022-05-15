@@ -38,7 +38,7 @@ public class PhieuVanChuyenActivity extends AppCompatActivity {
             PhieuVanChuyen PVC = new PhieuVanChuyen(dt.getString(0), dt.getString(1), dt.getString(2));
             ArrPVC.add(PVC);
         }
-        CustomAdapter_PVC adapter = new CustomAdapter_PVC(ArrPVC);
+        CustomAdapter_PVC adapter = new CustomAdapter_PVC(ArrPVC, this, R.layout.item_pvc);
         listView.setAdapter(adapter);
 
         imgbtn_addpvc.setOnClickListener(new View.OnClickListener() {

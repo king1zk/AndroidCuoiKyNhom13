@@ -24,7 +24,6 @@ import com.example.myapplication.Model.KH;
 public class KhachHangActivity extends AppCompatActivity {
 
     DBHelper DBhelper;
-    ImageView btnSend;
     private ArrayList<KH> ArrKH = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +32,6 @@ public class KhachHangActivity extends AppCompatActivity {
         // GET THONG TIN CT
         ImageButton imgbtn_addkh = findViewById(R.id.imgbtn_addkh);
         ListView listViewKH = findViewById(R.id.lvDSKH);
-        btnSend = findViewById(R.id.btnSend);
 
         ArrayList<KH> ArrKH = new ArrayList<>();
         DBhelper = new DBHelper(this, "qlvc.sqlite", null, 1);
@@ -64,12 +62,6 @@ public class KhachHangActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(KhachHangActivity.this, ThemKHActivity.class);
                 startActivity(intent);
-            }
-        });
-        btnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(KhachHangActivity.this, SendMail.class));
             }
         });
     }

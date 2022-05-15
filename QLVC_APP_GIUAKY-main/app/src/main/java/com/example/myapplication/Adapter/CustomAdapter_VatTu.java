@@ -1,7 +1,11 @@
 package com.example.myapplication.Adapter;
 import static com.example.myapplication.ext.ConstExt.POSITION;
+
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -10,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -77,14 +82,25 @@ public class CustomAdapter_VatTu extends BaseAdapter {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                try {
-                    DBhelper.deleteVT(arrayList.get(position));
-                } catch (Exception ex) {
-                    Log.d("huy", "ko xoa");
-                }
-                arrayList.remove(position);
-                notifyDataSetChanged();
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("Thông báo!");
+                builder.setIcon(R.mipmap.ic_launcher);
+                builder.setMessage("Xác nhận xóa?");
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Cursor dt = DBhelper.GetData("select * from chitietPVC where maPVC = '"+ arrayList.get(position).getMaVt() +"'");
+                        if(dt.moveToNext()){
+                            Toast.makeText(context, "Không thể xóa vật tư!", Toast.LENGTH_SHORT).show();
+                        } else{
+                            DBhelper.deleteVT(arrayList.get(position));
+                            arrayList.remove(position);
+                            notifyDataSetChanged();
+                            Toast.makeText(context, "Xóa vật tư thành công", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                builder.show();
             }
         });
         return viewitem;

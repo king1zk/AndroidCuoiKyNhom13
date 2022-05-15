@@ -14,7 +14,7 @@
         android:src="@drawable/email"></ImageView>
 
     <EditText
-        android:id="@+id/receiverEmail"
+        android:id="@+id/ReceiverEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -22,7 +22,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/shape_email"
         android:drawablePadding="10dp"
-        android:hint="Nhập email khách hàng"
+        android:hint="Receiver Email"
         android:inputType="textEmailAddress"
         android:padding="15dp"
         android:textColor="@color/black"
@@ -31,7 +31,7 @@
 
 
     <EditText
-        android:id="@+id/message"
+        android:id="@+id/SubjectEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -39,7 +39,22 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/shape_email"
         android:drawablePadding="10dp"
-        android:hint="Trạng thái"
+        android:hint="Subject Email"
+        android:inputType="textEmailAddress"
+        android:padding="15dp"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/black"
+        android:textColorHint="#79000000" />
+    <EditText
+        android:id="@+id/MessageEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shape_email"
+        android:drawablePadding="10dp"
+        android:hint="Message"
         android:inputType="textEmailAddress"
         android:padding="15dp"
         android:textColor="@color/black"

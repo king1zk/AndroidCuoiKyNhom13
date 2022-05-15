@@ -1,8 +1,9 @@
 package com.example.myapplication.Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class KhachHang_PVC {
+public class KhachHang_PVC implements Serializable {
     int maKH;
     int trangThai;
     String ngayTT;

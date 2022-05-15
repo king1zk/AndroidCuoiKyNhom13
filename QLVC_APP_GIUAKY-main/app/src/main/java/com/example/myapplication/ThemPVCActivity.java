@@ -87,20 +87,17 @@ public class ThemPVCActivity extends AppCompatActivity {
                 try {
                     if (flagValid) {
                         // Kiểm tra xem ngày giao có lớn hơn ngày hiện tại không
-                        if (dateFormat.parse(ngaychon).before(dateFormat.parse(strtodate)) || dateFormat.parse(ngaychon).equals(dateFormat.parse(strtodate))) {
-                            Toast.makeText(getApplicationContext(), "Ngày giao phải lớn hơn ngày hiện tại", Toast.LENGTH_SHORT).show();
-                        } else {
-                            try {
-                                DBhelper.QueryData("insert into PVC values('" + MaPVC + "','" + ngaychon+ "','" + dsCT.get(selected_position).getMaCT() + "')");
-                                Toast.makeText(getApplicationContext(), "Thêm thành công!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(ThemPVCActivity.this, PhieuVanChuyenActivity.class);
-                                startActivity(intent);
-                            } catch (Exception ex) {
-                                Toast.makeText(getApplicationContext(), "Lỗi ghi CSDL! Không thể thêm!", Toast.LENGTH_SHORT).show();
+                        try {
+                            DBhelper.QueryData("insert into PVC values('" + MaPVC + "','" + ngaychon+ "','" + dsCT.get(selected_position).getMaCT() + "')");
+                            Toast.makeText(getApplicationContext(), "Thêm thành công!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(ThemPVCActivity.this, PhieuVanChuyenActivity.class);
+                            startActivity(intent);
+                        } catch (Exception ex) {
+                            Toast.makeText(getApplicationContext(), "Lỗi ghi CSDL! Không thể thêm!", Toast.LENGTH_SHORT).show();
+
                             }
                         }
-                    }
-                } catch (ParseException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

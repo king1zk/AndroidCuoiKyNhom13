@@ -40,13 +40,6 @@
                     android:layout_height="wrap_content"
                     android:background="#FFFFCC"
                     android:src="@drawable/add1" />
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/btnSend"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:src="@drawable/mail" />
             </LinearLayout>
             <ListView
                 android:id="@+id/lvDSKH"

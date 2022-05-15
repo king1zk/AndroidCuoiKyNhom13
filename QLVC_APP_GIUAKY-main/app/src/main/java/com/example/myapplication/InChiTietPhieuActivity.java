@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static android.text.TextUtils.substring;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -61,9 +63,11 @@ public class InChiTietPhieuActivity extends Activity {
         TextView maPhieuTv_ICTP =  findViewById(R.id.maPhieu_ICTP);
         TextView ngayVanChuyenTv_ICTP  = findViewById(R.id.ngayVanChuyenTv_ICTP);
         TextView tongTienTv_ICTP = findViewById(R.id.tongTienTv_ICTP);
+        TextView ngayInTv_ICTP = findViewById(R.id.ngayInTv_ICTP);
         TableLayout danhSachVatTuTbl = findViewById(R.id.bangChiTietVatTuTb_ICTP);
         EditText daiDienCongTrinhEdt_ICTP = findViewById(R.id.daiDienCongTrinhEdt_ICTP);
         EditText nguoiLapEdt_ICTP = findViewById(R.id.nguoiLapEdt_ICTP);
+
         scanPdf = findViewById(R.id.kiemTraInBtn_ICTP);
         scrollView = findViewById(R.id.scrollView);
 
@@ -123,6 +127,7 @@ public class InChiTietPhieuActivity extends Activity {
             danhSachVatTuTbl.addView(tableRow);
         }
         tongTienTv_ICTP.setText(String.valueOf(tongTien) + "đ");
+        ngayInTv_ICTP.setText("TP HCM, ngày " +kh_pvc.getNgayTT().substring(8,10)+" tháng "+kh_pvc.getNgayTT().substring(5,7)+" năm "+kh_pvc.getNgayTT().substring(0,4));
     }
 
     public void kiemTraIn(View view) {

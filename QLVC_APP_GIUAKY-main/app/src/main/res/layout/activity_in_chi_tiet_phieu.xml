@@ -27,7 +27,7 @@
 
             <TextView
                 android:textStyle="bold"
-                android:textColor="#FF0000"
+                android:textColor="#3181E3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -249,6 +249,7 @@
                 android:layout_margin="20sp" />
 
             <LinearLayout
+                android:background="@drawable/background_pdf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -283,12 +284,6 @@
                         android:layout_marginTop="20dp" />
                 </LinearLayout>
             </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="50dp" />
         </LinearLayout>
     </ScrollView>
 

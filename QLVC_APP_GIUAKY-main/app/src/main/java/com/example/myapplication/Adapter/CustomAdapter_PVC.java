@@ -1,11 +1,16 @@
 package com.example.myapplication.Adapter;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.database.Cursor;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.DBHelper;
 import com.example.myapplication.Model.PhieuVanChuyen;
@@ -15,10 +20,14 @@ import java.util.ArrayList;
 
 public class CustomAdapter_PVC extends BaseAdapter {
     ArrayList<PhieuVanChuyen> arrayList;
+    Context context;
+    int layout;
     private DBHelper DBhelper;
 
-    public CustomAdapter_PVC(ArrayList<PhieuVanChuyen> arrayList) {
+    public CustomAdapter_PVC(ArrayList<PhieuVanChuyen> arrayList, Context context, int layout) {
         this.arrayList = arrayList;
+        this.context = context;
+        this.layout = layout;
     }
 
     @Override
@@ -52,14 +61,25 @@ public class CustomAdapter_PVC extends BaseAdapter {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                try {
-                    DBhelper.deletePVC(arrayList.get(position));
-                } catch (Exception ex) {
-                    Log.d("huy", "ko xoa");
-                }
-                arrayList.remove(position);
-                notifyDataSetChanged();
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("Thông báo!");
+                builder.setIcon(R.mipmap.ic_launcher);
+                builder.setMessage("Xác nhận xóa?");
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Cursor dt = DBhelper.GetData("select * from chitietPVC where maPVC = '"+ arrayList.get(position).getMaPVC() +"'");
+                        if(dt.moveToNext()){
+                            Toast.makeText(context, "Không thể xóa phiếu vận chuyển!", Toast.LENGTH_SHORT).show();
+                        } else{
+                            DBhelper.deletePVC(arrayList.get(position));
+                            arrayList.remove(position);
+                            notifyDataSetChanged();
+                            Toast.makeText(context, "Xóa phiếu vận chuyển thành công", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                builder.show();
             }
         });
         return viewitem;

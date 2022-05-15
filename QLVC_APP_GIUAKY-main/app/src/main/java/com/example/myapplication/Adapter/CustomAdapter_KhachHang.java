@@ -2,14 +2,21 @@ package com.example.myapplication.Adapter;
 
 import static com.example.myapplication.ext.ConstExt.POSITION;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.DBHelper;
 import com.example.myapplication.Model.KH;
@@ -62,14 +69,25 @@ public class CustomAdapter_KhachHang extends BaseAdapter {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                try {
-                    DBhelper.deleteKH(arrayList.get(position));
-                } catch (Exception ex) {
-                    Log.d("huy", "ko xoa");
-                }
-                arrayList.remove(position);
-                notifyDataSetChanged();
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("Thông báo!");
+                builder.setIcon(R.mipmap.ic_launcher);
+                builder.setMessage("Xác nhận xóa?");
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Cursor dt = DBhelper.GetData("select * from KH_PVC where maKH = '"+ arrayList.get(position).getMaKH() +"'");
+                        if(dt.moveToNext()){
+                            Toast.makeText(context, "Không thể xóa khách hàng!", Toast.LENGTH_SHORT).show();
+                        } else{
+                            DBhelper.deleteKH(arrayList.get(position));
+                            arrayList.remove(position);
+                            notifyDataSetChanged();
+                            Toast.makeText(context, "Xóa khách hàng thành công", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                builder.show();
             }
         });
         ImageView btnEditKH = viewitem.findViewById(R.id.btnEditKH);
@@ -85,14 +103,35 @@ public class CustomAdapter_KhachHang extends BaseAdapter {
         btnSendMail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    DBhelper.sendKH(arrayList.get(position));
-                } catch (Exception ex) {
-                    Log.d("huy", "ko xoa");
-                }
-                arrayList.get(position).getEmail();
+                SendMail(KH);
             }
         });
         return viewitem;
+    }
+
+    private void SendMail(KH KH) {
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.sendmail);
+        EditText edtReciverMail = dialog.findViewById(R.id.ReceiverEmail);
+        edtReciverMail.setText(KH.getEmail());
+        EditText edtSubjectMail = dialog.findViewById(R.id.SubjectEmail);
+        edtSubjectMail.setText("FILE HÓA ĐƠN PHIẾU VẬN CHUYỂN");
+        EditText editMessageMail = dialog.findViewById(R.id.MessageEmail);
+        editMessageMail.setText("Kính gửi quý khách hàng File Hóa Đơn phiếu vận chuyển.\n\nXin chân thành cảm ơn quý khách đã tin tưởng và sử dụng dịch vụ của chúng tôi!\n\nChúc quý khách một ngày làm việc vui vẻ.");
+        Button btnSendMail = dialog.findViewById(R.id.SendEmail);
+        btnSendMail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                String[] recivers = edtReciverMail.getText().toString().split(",");
+                intent.putExtra(Intent.EXTRA_EMAIL,recivers);
+                intent.putExtra(Intent.EXTRA_SUBJECT, edtSubjectMail.getText().toString());
+                intent.putExtra(Intent.EXTRA_TEXT, editMessageMail.getText().toString());
+                intent.setType("message/rfc822");
+                context.startActivity(Intent.createChooser(intent, "Send mail" ));
+            }
+        });
+        dialog.show();
+
     }
 }
