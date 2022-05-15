@@ -18,6 +18,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Model.CongTrinh;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,7 +30,6 @@ import java.util.Date;
 public class ThemPVCActivity extends AppCompatActivity {
     DBHelper DBhelper;
     int selected_position;
-    ImageView btnReturn7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,6 @@ public class ThemPVCActivity extends AppCompatActivity {
         EditText edtMaPVC = findViewById(R.id.edtMaPVC);
         Button btnadd = findViewById(R.id.btnTaoPVC);
         Spinner gvspinner = findViewById(R.id.spnCT);
-        btnReturn7 = findViewById(R.id.btnReturn7);
 
         ArrayList<CongTrinh> dsCT = new ArrayList<CongTrinh>();
         Cursor dt = DBhelper.GetData("select * from congtrinh");
@@ -103,12 +103,6 @@ public class ThemPVCActivity extends AppCompatActivity {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-            }
-        });
-        btnReturn7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ThemPVCActivity.this, MainActivity.class));
             }
         });
     }

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
     <application
         android:name=".NotificationApp"
         android:allowBackup="true"
@@ -14,18 +16,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <!-- <meta-data
+        <activity
+            android:name=".KH_PVC_Activity"
+            android:exported="false" />
+        <!--
+         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBjJV4iqkoi5RS_0xiCUKWr_sJt5MaSSzo" />
              <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         -->
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/map_key"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key" />
 
-        <activity android:name=".KhachHangActivity"></activity>
-        <activity android:name=".SuaVTActivity"></activity>
-        <activity android:name=".SuaKHActivity"></activity>
-        <activity android:name=".SuaCongTrinhActivity"></activity>
+        <activity android:name=".KhachHangActivity" />
+        <activity android:name=".SuaVTActivity" />
+        <activity android:name=".SuaKHActivity" />
+        <activity android:name=".SuaCongTrinhActivity" />
         <activity android:name=".ThemCTActivity" />
         <activity android:name=".ThemVTActivity" />
         <activity android:name=".ThemPVCActivity" />

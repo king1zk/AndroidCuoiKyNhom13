@@ -7,9 +7,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -19,8 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-import static androidx.core.content.ContextCompat.startActivity;
-import static com.example.myapplication.ext.ConstExt.POSITION;
+import com.example.myapplication.Model.VatTu;
 
 public class DSVatTuActivity extends AppCompatActivity {
     private static int REQUEST_CODE = 1;

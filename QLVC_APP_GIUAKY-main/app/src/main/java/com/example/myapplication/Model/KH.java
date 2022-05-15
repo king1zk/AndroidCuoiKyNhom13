@@ -1,6 +1,8 @@
-package com.example.myapplication;
+package com.example.myapplication.Model;
 
-public class KH {
+import java.io.Serializable;
+
+public class KH implements Serializable {
     int maKH;
     String tenKH, email,sdt;
 

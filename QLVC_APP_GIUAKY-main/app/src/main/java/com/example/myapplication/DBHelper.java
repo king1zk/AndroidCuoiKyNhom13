@@ -8,8 +8,11 @@ import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.Nullable;
 
-import java.sql.Blob;
-import java.util.Date;
+import com.example.myapplication.Model.ChiTietPVC;
+import com.example.myapplication.Model.CongTrinh;
+import com.example.myapplication.Model.KH;
+import com.example.myapplication.Model.PhieuVanChuyen;
+import com.example.myapplication.Model.VatTu;
 
 public class DBHelper extends SQLiteOpenHelper {
 // factory con trỏ dùng để duyêt dữ liệu

@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,14 +8,22 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapplication.DBHelper;
+import com.example.myapplication.Model.ChiTietPVC;
+import com.example.myapplication.R;
+
 import java.util.ArrayList;
 
 public class CustomAdapter_CTVC extends BaseAdapter {
     ArrayList<ChiTietPVC> arrayList;
+    Context context;
+    int layout;
     private DBHelper DBhelper;
 
-    public CustomAdapter_CTVC(ArrayList<ChiTietPVC> arrayList) {
+    public CustomAdapter_CTVC(ArrayList<ChiTietPVC> arrayList, Context context, int layout) {
         this.arrayList = arrayList;
+        this.context = context;
+        this.layout = layout;
     }
 
     @Override
@@ -34,7 +43,7 @@ public class CustomAdapter_CTVC extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        DBhelper = new DBHelper(parent.getContext(), "qlvc.sqlite", null, 1);
+        DBhelper = new DBHelper(context, "qlvc.sqlite", null, 1);
         View viewitem = View.inflate(parent.getContext(), R.layout.item_ctvc, null);
         ChiTietPVC Ctvc = (ChiTietPVC) getItem(position);
         TextView tvMaPVC = (TextView) viewitem.findViewById(R.id.tvMaPVC);

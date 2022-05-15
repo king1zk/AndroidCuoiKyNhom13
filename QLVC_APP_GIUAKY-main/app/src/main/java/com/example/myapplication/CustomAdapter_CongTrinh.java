@@ -1,20 +1,20 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.ext.ConstExt.POSITION;
+
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.example.myapplication.DBHelper;
+import com.example.myapplication.Model.CongTrinh;
+import com.example.myapplication.R;
+import com.example.myapplication.SuaCongTrinhActivity;
 
 import java.util.ArrayList;
 
@@ -63,6 +63,7 @@ public class CustomAdapter_CongTrinh extends BaseAdapter {
         btnEditCT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                POSITION = position;
                 Intent intent = new Intent(context, SuaCongTrinhActivity.class);
                 context.startActivity(intent);
             }

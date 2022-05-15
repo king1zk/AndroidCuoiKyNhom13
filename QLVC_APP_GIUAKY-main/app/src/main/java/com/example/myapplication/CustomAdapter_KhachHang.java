@@ -4,14 +4,17 @@ import static com.example.myapplication.ext.ConstExt.POSITION;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.myapplication.DBHelper;
+import com.example.myapplication.Model.KH;
+import com.example.myapplication.R;
+import com.example.myapplication.SuaKHActivity;
 
 import java.util.ArrayList;
 

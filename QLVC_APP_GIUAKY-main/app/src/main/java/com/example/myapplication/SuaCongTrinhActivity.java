@@ -19,13 +19,14 @@ import java.util.ArrayList;
 
 import static com.example.myapplication.ext.ConstExt.POSITION;
 
+import com.example.myapplication.Model.CongTrinh;
+
 public class SuaCongTrinhActivity extends AppCompatActivity {
 
     DBHelper DBhelper;
     EditText edtTenCT, edtDiaChi;
     Button btnSuaCT;
     String maCT;
-    ImageView btnReturn4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,20 +83,12 @@ public class SuaCongTrinhActivity extends AppCompatActivity {
                 }
             }
         });
-        btnReturn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SuaCongTrinhActivity.this, MainActivity.class));
-            }
-        });
-
     }
 
     private void create() {
         edtTenCT = findViewById(R.id.edtTenCT);
         edtDiaChi = findViewById(R.id.edtDiaChi);
         btnSuaCT = findViewById(R.id.btnSuaCT);
-        btnReturn4 = findViewById(R.id.btnReturn4);
     }
     @Override
     public boolean onCreatePanelMenu(int featureId, @NonNull Menu menu) {

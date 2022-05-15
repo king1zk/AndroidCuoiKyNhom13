@@ -1,12 +1,15 @@
 package com.example.myapplication;
 
-import android.database.Cursor;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.myapplication.DBHelper;
+import com.example.myapplication.Model.PhieuVanChuyen;
+import com.example.myapplication.R;
 
 import java.util.ArrayList;
 

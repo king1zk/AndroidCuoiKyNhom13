@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,12 +11,14 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-import static com.example.myapplication.ext.ConstExt.POSITION;
+import com.example.myapplication.Model.KH;
 
 public class KhachHangActivity extends AppCompatActivity {
 
@@ -44,15 +44,20 @@ public class KhachHangActivity extends AppCompatActivity {
         }
         CustomAdapter_KhachHang adapter = new CustomAdapter_KhachHang(ArrKH, this, R.layout.item_dskh);
         listViewKH.setAdapter(adapter);
-//
-//        listViewKH.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                POSITION = position;
-//                Intent intent = new Intent(KhachHangActivity.this, SuaKHActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+
+        listViewKH.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(KhachHangActivity.this, KH_PVC_Activity.class);
+                try{
+                    KH kh = (KH) listViewKH.getItemAtPosition(position);
+                    intent.putExtra("KhachHang", kh);
+                }catch (Exception e){
+                    Toast.makeText(KhachHangActivity.this,e.toString(), Toast.LENGTH_LONG).show();
+                }
+                startActivity(intent);
+            }
+        });
         imgbtn_addkh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

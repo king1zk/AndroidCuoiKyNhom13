@@ -14,6 +14,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.myapplication.Model.ChiTietPVC;
+
 import java.util.ArrayList;
 
 public class ChiTietPVCActivity extends AppCompatActivity {
@@ -38,7 +40,7 @@ public class ChiTietPVCActivity extends AppCompatActivity {
             ChiTietPVC CTVC = new ChiTietPVC(dt.getString(0), dt.getInt(1), dt.getInt(2), dt.getInt(3));
             ArrCTVC.add(CTVC);
         }
-        CustomAdapter_CTVC adapter = new CustomAdapter_CTVC(ArrCTVC);
+        CustomAdapter_CTVC adapter = new CustomAdapter_CTVC(ArrCTVC, this, R.layout.item_ctvc);
         listView.setAdapter(adapter);
 
         imgbtn_addctvc.setOnClickListener(new View.OnClickListener() {

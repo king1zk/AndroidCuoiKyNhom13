@@ -1,5 +1,5 @@
 package com.example.myapplication;
-
+import static com.example.myapplication.ext.ConstExt.POSITION;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,12 +10,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import static android.widget.Toast.makeText;
-import static androidx.core.content.ContextCompat.startActivity;
+
+import com.example.myapplication.DBHelper;
+import com.example.myapplication.Model.VatTu;
+import com.example.myapplication.R;
+import com.example.myapplication.SuaVTActivity;
 
 public class CustomAdapter_VatTu extends BaseAdapter {
     ArrayList<VatTu> arrayList;
@@ -65,6 +68,7 @@ public class CustomAdapter_VatTu extends BaseAdapter {
         btnEditVT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                POSITION = position;
                 Intent intent = new Intent(context, SuaVTActivity.class);
                 context.startActivity(intent);
             }

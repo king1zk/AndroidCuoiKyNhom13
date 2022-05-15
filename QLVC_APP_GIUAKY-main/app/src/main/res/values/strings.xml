@@ -65,6 +65,6 @@
     <string name="channel_description">this is Chanel 1</string>
     <string name="map">AIzaSyAzqJFzhvEz6h4buJrFnorviH1ed4RQGe0</string>
 
-        <string name="map_key" translatable="false">AIzaSyBjJV4iqkoi5RS_0xiCUKWr_sJt5MaSSzo</string>
+    <string name="map_key" translatable="false">AIzaSyBjJV4iqkoi5RS_0xiCUKWr_sJt5MaSSzo</string>
 
 </resources>

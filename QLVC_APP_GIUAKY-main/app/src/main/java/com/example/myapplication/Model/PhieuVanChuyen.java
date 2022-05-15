@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Model;
 
 public class PhieuVanChuyen {
     String maPVC, ngayVC, maCT;

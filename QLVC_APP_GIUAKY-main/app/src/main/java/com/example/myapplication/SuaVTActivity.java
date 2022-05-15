@@ -26,6 +26,8 @@ import java.util.ArrayList;
 
 import static com.example.myapplication.ext.ConstExt.POSITION;
 
+import com.example.myapplication.Model.VatTu;
+
 public class SuaVTActivity extends AppCompatActivity {
 
     private int PICK_IMAGE = 8888;

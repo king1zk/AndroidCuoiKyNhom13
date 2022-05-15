@@ -8,6 +8,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapplication.DBHelper;
+import com.example.myapplication.Model.VatTu;
+import com.example.myapplication.R;
+
 import java.util.ArrayList;
 
 public class CustomSpinerAdapterVT extends BaseAdapter {
