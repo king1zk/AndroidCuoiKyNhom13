@@ -137,7 +137,12 @@ public class Map extends FragmentActivity implements OnMapReadyCallback,
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        LatLng vn = new LatLng(-33.867,151.206);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(vn,13));
+        mMap.addMarker(new MarkerOptions()
+            .title("Việt Nam")
+                .snippet("The most")
+                .position(vn));
         if(locationPermission) {
             getMyLocation();
         }

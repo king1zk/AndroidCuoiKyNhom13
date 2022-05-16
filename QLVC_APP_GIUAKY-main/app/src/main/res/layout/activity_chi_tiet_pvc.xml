@@ -13,31 +13,37 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/btnReturn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back1" />
+        <ImageView
             android:id="@+id/btnmap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/map" />
 
         <TextView
-            android:id="@+id/txtPVC"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:text="@string/CTPVC"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+        android:id="@+id/txtPVC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="@string/CTPVC"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold|italic" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
         android:padding="5dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right">
+
             <ImageButton
                 android:id="@+id/imgbtn_addctvc"
                 android:layout_width="wrap_content"
@@ -47,54 +53,50 @@
                 android:backgroundTint="#FFFFCC"
                 android:foregroundTint="#FFFFCC"
                 android:src="@drawable/add1" />
+
         </LinearLayout>
         <LinearLayout
-            android:layout_marginRight="55dp"
+            android:id="@+id/listCTVC"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
             <TextView
                 android:id="@+id/txtMaPVC"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+
+                android:padding="15dp"
                 android:text="Mã PVC"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textStyle="bold"/>
+                android:textAlignment="textStart" />
 
             <TextView
                 android:id="@+id/txmaVT"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Tên VT"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:textStyle="bold"/>
+                android:padding="15dp"
+                android:text="@string/maVT"
+                android:textAlignment="textEnd" />
             <TextView
                 android:id="@+id/txtSoLuong"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:padding="15dp"
                 android:text="@string/SL"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textStyle="bold"/>
+                android:textAlignment="textEnd" />
+
+
             <TextView
                 android:id="@+id/txtNgayVC"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:padding="15dp"
                 android:text="@string/Cly"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textStyle="bold"/>
+                android:textAlignment="center" />
+
+
         </LinearLayout>
-    </LinearLayout>
 
         <ListView
             android:id="@+id/lvCTVC"
@@ -103,5 +105,8 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingBottom="10dp" />
+
     </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>
