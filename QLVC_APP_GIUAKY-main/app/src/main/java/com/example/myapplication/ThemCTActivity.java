@@ -24,6 +24,7 @@ public class ThemCTActivity extends AppCompatActivity {
     DBHelper DBhelper;
     EditText edtTenCT, edtDiaChi, edtMaCT;
     Button btnTaoCT;
+    ImageView btnReturn5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,12 @@ public class ThemCTActivity extends AppCompatActivity {
                 }
             }
         });
+        btnReturn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ThemCTActivity.this, MainActivity.class));
+            }
+        });
     }
 
     private void create() {
@@ -77,6 +84,7 @@ public class ThemCTActivity extends AppCompatActivity {
         edtTenCT = findViewById(R.id.edtTenCT);
         edtDiaChi = findViewById(R.id.edtDiaChi);
         btnTaoCT = findViewById(R.id.btnTaoCT);
+        btnReturn5 = findViewById(R.id.btnReturn5);
     }
     @Override
     public boolean onCreatePanelMenu(int featureId, @NonNull Menu menu) {
