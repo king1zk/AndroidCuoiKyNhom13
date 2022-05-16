@@ -63,16 +63,6 @@ public class dashboard extends AppCompatActivity {
             startActivity(new Intent(this, KhachHangActivity.class));
             overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         });
-        Init_DB();
+    }
 
-    }
-    public void Init_DB() {
-        DBhelper = new DBHelper(this, "qlvc.sqlite", null, 1);
-        DBhelper.QueryData("create table if not exists user(id integer primary key Autoincrement,username varchar(50) unique, password nvarchar(50))");
-        DBhelper.QueryData("create table if not exists vattu(maVT integer primary key Autoincrement,tenVT nvarchar(100),dvTinh nvarchar(30),giaVC float,hinh Blob)");
-        DBhelper.QueryData("create table if not exists congtrinh( maCT nvarchar(30) primary key,tenCT nvarchar(50), diachi nvarchar(100))");
-        DBhelper.QueryData("create table if not exists PVC(maPVC nchar(10) primary key, ngayVC date, maCT varchar(30),TT nvarchar(50), FOREIGN KEY(maCT) REFERENCES congtrinh(maCT) )");
-        DBhelper.QueryData("create table if not exists chitietPVC( maPVC nchar(10), maVT int, soluong int, culy int,PRIMARY KEY (maPVC, maVT) FOREIGN KEY(maPVC) REFERENCES PVC(maPVC),  FOREIGN KEY (maVT) REFERENCES vattu(maVT))");
-        DBhelper.QueryData("create table if not exists KH(maKH integer primary key Autoincrement,hoTenKH nvarchar(50),email varchar(50),sdt varchar(13),maPVC nchar(10),FOREIGN KEY(maPVC) REFERENCES PVC(maPVC))");
-    }
 }

@@ -64,6 +64,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        Init_DB();
 
+    }
+    public void Init_DB() {
+        DBhelper.QueryData("create table if not exists user(id integer primary key Autoincrement,username varchar(50) unique, password nvarchar(50))");
+        DBhelper.QueryData("create table if not exists vattu(maVT integer primary key Autoincrement,tenVT nvarchar(100),dvTinh nvarchar(30),giaVC float,hinh Blob)");
+        DBhelper.QueryData("create table if not exists congtrinh( maCT nvarchar(30) primary key,tenCT nvarchar(50), diachi nvarchar(100))");
+        DBhelper.QueryData("create table if not exists PVC(maPVC nchar(10) primary key, ngayVC date, maCT varchar(30), FOREIGN KEY(maCT) REFERENCES congtrinh(maCT) )");
+        DBhelper.QueryData("create table if not exists chitietPVC( maPVC nchar(10), maVT int, soluong int, culy int,PRIMARY KEY (maPVC, maVT) FOREIGN KEY(maPVC) REFERENCES PVC(maPVC),  FOREIGN KEY (maVT) REFERENCES vattu(maVT))");
+        DBhelper.QueryData("create table if not exists KH(maKH integer primary key Autoincrement,hoTenKH nvarchar(50),email varchar(50),sdt varchar(13))");
+        try{
+            DBhelper.QueryData("create table if not exists KH_PVC(maKH integer, maPVC nchar(10), tinhtrang bit, NgayThanhToan date,PRIMARY KEY (maKH, maPVC) FOREIGN KEY(maPVC) REFERENCES PVC(maPVC),  FOREIGN KEY (maKH) REFERENCES KH(maKH), unique(maPVC))");
+        }catch (Exception e){
+            System.out.print(e.toString());
+        }
     }
 }
