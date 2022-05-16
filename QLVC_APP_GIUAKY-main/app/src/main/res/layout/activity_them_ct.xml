@@ -14,12 +14,6 @@
         android:backgroundTint="#FFFFFF"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/btnReturn5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back1" />
-
         <TextView
             android:id="@+id/txtDSVT"
             android:layout_width="match_parent"
@@ -29,7 +23,7 @@
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textSize="24sp"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"

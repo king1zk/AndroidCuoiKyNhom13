@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/nhom13/okla/QLVC_APP_GIUAKY_NHOM5/QLVC_APP_GIUAKY-main/app/src/main/res/layout/activity_main.xml" value="0.20199275362318841" />
-        <entry key="..\:/nhom13/okla/QLVC_APP_GIUAKY_NHOM5/QLVC_APP_GIUAKY-main/app/src/main/res/layout/activity_main_login.xml" value="0.20199275362318841" />
-        <entry key="..\:/nhom13/okla/QLVC_APP_GIUAKY_NHOM5/QLVC_APP_GIUAKY-main/app/src/main/res/layout/activity_phieu_van_chuyen.xml" value="0.12360688956433637" />
-        <entry key="..\:/nhom13/okla/QLVC_APP_GIUAKY_NHOM5/QLVC_APP_GIUAKY-main/app/src/main/res/layout/activity_signin.xml" value="0.20199275362318841" />
-        <entry key="..\:/nhom13/okla/QLVC_APP_GIUAKY_NHOM5/QLVC_APP_GIUAKY-main/app/src/main/res/layout/activity_them_pvc.xml" value="0.12360688956433637" />
-        <entry key="..\:/nhom13/okla/QLVC_APP_GIUAKY_NHOM5/QLVC_APP_GIUAKY-main/app/src/main/res/layout/activity_thong_ke.xml" value="0.1" />
-      </map>
-    </option>
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

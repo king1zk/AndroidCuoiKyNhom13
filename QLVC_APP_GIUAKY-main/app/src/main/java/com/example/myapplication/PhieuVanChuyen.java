@@ -1,17 +1,16 @@
 package com.example.myapplication;
 
 public class PhieuVanChuyen {
-    String maPVC, ngayVC, maCT,TT;
+    String maPVC, ngayVC, maCT;
 
 
     public PhieuVanChuyen(String string) {
     }
 
-    public PhieuVanChuyen(String maPVC, String ngayVC, String maCT,String TT) {
+    public PhieuVanChuyen(String maPVC, String ngayVC, String maCT) {
         this.maPVC = maPVC;
         this.ngayVC = ngayVC;
         this.maCT = maCT;
-        this.TT=TT;
     }
 
     public String getMaPVC() {
@@ -36,13 +35,6 @@ public class PhieuVanChuyen {
 
     public void setMaCT(String maCT) {
         this.maCT = maCT;
-    }
-    public String getTT() {
-        return TT;
-    }
-
-    public void setTT(String TT) {
-        this.TT = TT;
     }
 
     @Override

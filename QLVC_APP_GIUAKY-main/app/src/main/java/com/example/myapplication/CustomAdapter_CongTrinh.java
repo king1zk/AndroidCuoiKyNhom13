@@ -1,10 +1,12 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.ext.ConstExt.POSITION;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
+import android.database.Cursor;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -12,16 +14,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
 
 public class CustomAdapter_CongTrinh extends BaseAdapter {
     ArrayList<CongTrinh> arrayList;
+    Context context;
+    int layout;
     DBHelper DBhelper;
 
-    public CustomAdapter_CongTrinh(ArrayList<CongTrinh> arrayList) {
+    public CustomAdapter_CongTrinh(ArrayList<CongTrinh> arrayList, Context context, int layout) {
         this.arrayList = arrayList;
+        this.context = context;
+        this.layout = layout;
     }
 
     @Override
@@ -53,18 +57,38 @@ public class CustomAdapter_CongTrinh extends BaseAdapter {
         TextView tvDChi = (TextView) viewitem.findViewById(R.id.tvDC);
         tvDChi.setText(CT.getDiaChi());
 
+        ImageView btnEditCT = viewitem.findViewById(R.id.btnUpdate);
+        btnEditCT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                POSITION = position;
+                Intent intent = new Intent(context, SuaCongTrinhActivity.class);
+                context.startActivity(intent);
+            }
+        });
         ImageView btnXoa = viewitem.findViewById(R.id.btnDeleteCT);
         btnXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                try {
-                    DBhelper.deleteCT(arrayList.get(position));
-                } catch (Exception ex) {
-                    Log.d("huy", "ko xoa");
-                }
-                arrayList.remove(position);
-                notifyDataSetChanged();
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("Thông báo!");
+                builder.setIcon(R.mipmap.ic_launcher);
+                builder.setMessage("Xác nhận xóa?");
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Cursor dt = DBhelper.GetData("select * from PVC where maCT = '"+ arrayList.get(position).getMaCT() +"'");
+                        if(dt.moveToNext()){
+                            Toast.makeText(context, "Không thể xóa công trình!", Toast.LENGTH_SHORT).show();
+                        } else{
+                            DBhelper.deleteCT(arrayList.get(position));
+                            arrayList.remove(position);
+                            notifyDataSetChanged();
+                            Toast.makeText(context, "Xóa công trình thành công", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                builder.show();
             }
         });
 

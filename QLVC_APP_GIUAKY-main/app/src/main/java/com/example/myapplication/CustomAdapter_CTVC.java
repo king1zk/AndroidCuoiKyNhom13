@@ -1,20 +1,28 @@
 package com.example.myapplication;
 
-import android.util.Log;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.database.Cursor;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class CustomAdapter_CTVC extends BaseAdapter {
     ArrayList<ChiTietPVC> arrayList;
+    Context context;
+    int layout;
     private DBHelper DBhelper;
 
-    public CustomAdapter_CTVC(ArrayList<ChiTietPVC> arrayList) {
+    public CustomAdapter_CTVC(ArrayList<ChiTietPVC> arrayList, Context context, int layout) {
         this.arrayList = arrayList;
+        this.context = context;
+        this.layout = layout;
     }
 
     @Override
@@ -34,7 +42,7 @@ public class CustomAdapter_CTVC extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        DBhelper = new DBHelper(parent.getContext(), "qlvc.sqlite", null, 1);
+        DBhelper = new DBHelper(context, "qlvc.sqlite", null, 1);
         View viewitem = View.inflate(parent.getContext(), R.layout.item_ctvc, null);
         ChiTietPVC Ctvc = (ChiTietPVC) getItem(position);
         TextView tvMaPVC = (TextView) viewitem.findViewById(R.id.tvMaPVC);
@@ -49,14 +57,32 @@ public class CustomAdapter_CTVC extends BaseAdapter {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                try {
-                    DBhelper.deleteCTVC(arrayList.get(position));
-                } catch (Exception ex) {
-                    Log.d("huy", "ko xoa");
-                }
-                arrayList.remove(position);
-                notifyDataSetChanged();
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("Thông báo!");
+                builder.setIcon(R.mipmap.ic_launcher);
+                builder.setMessage("Xác nhận xóa?");
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Cursor dt = DBhelper.GetData("select * from KH_PVC where maPVC = '"+ arrayList.get(position).getMaPVC()+"'");
+                        if(dt.moveToNext()){
+                            if(dt.getInt(2) == 1){
+                                Toast.makeText(context, "Không thể xóa chi tiết phiếu vận chuyển", Toast.LENGTH_SHORT).show();
+                            } else{
+                                DBhelper.deleteCTVC(arrayList.get(position));
+                                arrayList.remove(position);
+                                notifyDataSetChanged();
+                                Toast.makeText(context, "Xóa chi tiết phiếu vận chuyển thành công", Toast.LENGTH_SHORT).show();
+                            }
+                        } else{
+                            DBhelper.deleteCTVC(arrayList.get(position));
+                            arrayList.remove(position);
+                            notifyDataSetChanged();
+                            Toast.makeText(context, "Xóa chi tiết phiếu vận chuyển thành công", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                builder.show();
             }
         });
         return viewitem;

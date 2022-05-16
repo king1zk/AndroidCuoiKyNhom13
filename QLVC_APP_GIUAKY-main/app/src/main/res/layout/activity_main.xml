@@ -3,20 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#FFFFFF">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_qlvt"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
             app:cardCornerRadius="30dp"
@@ -53,7 +52,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_qlct"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
             app:cardCornerRadius="30dp"
@@ -96,13 +95,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#FFFFFF">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_chuyenVT"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
             app:cardCornerRadius="30dp"
@@ -139,7 +138,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_qlchitiet"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
             app:cardCornerRadius="30dp"
@@ -191,8 +190,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#FFFFFF">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_thongke"
@@ -203,7 +202,6 @@
             app:cardCornerRadius="30dp"
             app:cardElevation="30dp"
             app:cardBackgroundColor="#FF9933">
-            //#FAE39F
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -235,7 +233,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_khachhang"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
             app:cardCornerRadius="30dp"

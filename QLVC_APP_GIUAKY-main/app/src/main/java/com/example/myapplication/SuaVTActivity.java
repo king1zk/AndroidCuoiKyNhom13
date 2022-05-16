@@ -51,7 +51,7 @@ public class SuaVTActivity extends AppCompatActivity {
             VatTu VT = new VatTu(dt.getInt(0),dt.getString(1),dt.getString(2),dt.getFloat(3),dt.getBlob(4));
             ArrVT.add(VT);
         }
-        CustomAdapter_VatTu adapter = new CustomAdapter_VatTu(ArrVT);
+        CustomAdapter_VatTu adapter = new CustomAdapter_VatTu(ArrVT, this, R.layout.item_dsvt);
         VatTu vt = (VatTu) adapter.getItem(POSITION);
         edtTenVT.setText(vt.getTenVt());
         edtDvTinh.setText(vt.getDvTinh());

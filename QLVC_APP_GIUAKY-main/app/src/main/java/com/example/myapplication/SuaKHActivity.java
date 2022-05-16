@@ -2,29 +2,18 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static com.example.myapplication.ext.ConstExt.POSITION;
@@ -33,7 +22,6 @@ public class SuaKHActivity extends AppCompatActivity {
 
     DBHelper DBhelper;
     EditText edtTenKH,edtEmail,edtSdt;
-    Spinner PVCspinner;
     Button btnSuaKH;
     int maKH;
     int selected_positionPVC;
@@ -50,16 +38,14 @@ public class SuaKHActivity extends AppCompatActivity {
         while(dt.moveToNext())
         {
             Log.d("SelectKH", dt.getString(0) );
-            KH KH = new KH(dt.getInt(0),dt.getString(1),dt.getString(2),dt.getString(3),dt.getString(4));
+            KH KH = new KH(dt.getInt(0),dt.getString(1),dt.getString(2),dt.getString(3));
             ArrKH.add(KH);
         }
-        CustomAdapter_KhachHang adapter = new CustomAdapter_KhachHang(ArrKH);
+        CustomAdapter_KhachHang adapter = new CustomAdapter_KhachHang(ArrKH, this, R.layout.item_dskh);
         KH kh = (KH) adapter.getItem(POSITION);
         edtTenKH.setText(kh.getTenKH());
         edtEmail.setText(kh.getEmail());
         edtSdt.setText(kh.getSdt());
-//        Bitmap bitmap= BitmapFactory.decodeByteArray(vt.getHinh(), 0, vt.getHinh().length);
-//        imageView.setImageBitmap(bitmap);
         maKH =kh.getMaKH();
         setEvent();
 
@@ -69,26 +55,6 @@ public class SuaKHActivity extends AppCompatActivity {
 
 
     private void setEvent() {
-        ArrayList<PhieuVanChuyen> dsPVC= new ArrayList<PhieuVanChuyen>();
-        Cursor dt= DBhelper.GetData("select * from PVC");
-        while (dt.moveToNext()){
-            PhieuVanChuyen ct=new PhieuVanChuyen(dt.getString(0), dt.getString(1),dt.getString(2),dt.getString(3));
-            dsPVC.add(ct);
-        }
-
-        ArrayAdapter spinnerAdapterPVC = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, dsPVC);
-        PVCspinner.setAdapter(spinnerAdapterPVC);
-
-        PVCspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                selected_positionPVC= position;
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                Toast.makeText(getApplicationContext(), "onNothingSelected", Toast.LENGTH_SHORT).show();
-            }
-        });
         btnSuaKH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,8 +79,7 @@ public class SuaKHActivity extends AppCompatActivity {
                     {
                         Log.d("edit", "KH: " +  edtTenKH.getText().toString().trim());
 
-                        DBhelper.updateKH(edtTenKH.getText().toString(), edtEmail.getText().toString(),edtSdt.getText().toString(),dsPVC.get(selected_positionPVC).getMaPVC(), maKH);
-                       // DBhelper.QueryData("Update into KH values(null,'"   + edtTenKH.getText().toString() + "','" + edtEmail.getText().toString()+ "','"  + edtSdt.getText().toString() +"','" + dsPVC.get(selected_positionPVC).getMaPVC() + "')");
+                        DBhelper.updateKH(edtTenKH.getText().toString(), edtEmail.getText().toString(),edtSdt.getText().toString(), maKH);
                         Toast.makeText(SuaKHActivity.this, "sửa khách hàng thành công!", Toast.LENGTH_LONG).show();
                         //thêm xong thì về lại danh sách
                         Intent intent = new Intent(SuaKHActivity.this, KhachHangActivity.class);
@@ -135,7 +100,6 @@ public class SuaKHActivity extends AppCompatActivity {
         edtTenKH = findViewById(R.id.edtTenKH);
         edtEmail = findViewById(R.id.edtEmail);
         edtSdt = findViewById(R.id.edtSdt);
-        PVCspinner=findViewById(R.id.spnPVC);
         btnSuaKH = findViewById(R.id.btnSuaKH);
     }
     @Override
