@@ -26,6 +26,9 @@ import java.util.ArrayList;
 
 import static com.example.myapplication.ext.ConstExt.POSITION;
 
+import com.example.myapplication.Adapter.CustomAdapter_VatTu;
+import com.example.myapplication.Model.VatTu;
+
 public class SuaVTActivity extends AppCompatActivity {
 
     private int PICK_IMAGE = 8888;
@@ -51,7 +54,7 @@ public class SuaVTActivity extends AppCompatActivity {
             VatTu VT = new VatTu(dt.getInt(0),dt.getString(1),dt.getString(2),dt.getFloat(3),dt.getBlob(4));
             ArrVT.add(VT);
         }
-        CustomAdapter_VatTu adapter = new CustomAdapter_VatTu(ArrVT);
+        CustomAdapter_VatTu adapter = new CustomAdapter_VatTu(ArrVT, this, R.layout.item_dsvt);
         VatTu vt = (VatTu) adapter.getItem(POSITION);
         edtTenVT.setText(vt.getTenVt());
         edtDvTinh.setText(vt.getDvTinh());
@@ -163,7 +166,7 @@ public class SuaVTActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.memu_home:
-                Intent intent =new Intent(this, MainActivity.class);
+                Intent intent =new Intent(this, dashboard.class);
                 startActivity(intent);
                 break;
             case  R.id.memu_back:

@@ -13,12 +13,6 @@
         android:backgroundTint="#FFFFFF"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/btnReturn7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back1"/>
-
         <TextView
             android:id="@+id/txtDSVC"
             android:layout_width="match_parent"
@@ -27,8 +21,8 @@
             android:text="Thêm Phiếu Vận Chuyển"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textSize="20dp"
-            android:textStyle="bold|italic" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,7 +40,7 @@
                 android:background="@drawable/shape_email"
                 android:drawablePadding="10dp"
                 android:hint="@string/MaPVC"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/black"
                 android:textColorHint="#79000000" />
@@ -55,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:padding="10dp"
                 android:text="@string/ngayVC"
                 android:textColor="@color/black"
@@ -68,15 +62,6 @@
                 android:layout_height="100dp"
                 android:calendarViewShown="false"
                 android:datePickerMode="spinner" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="10dp"
-                android:text="@string/MaCT"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/black"
-                android:textColorHint="#79000000" />
 
             <Spinner
                 android:id="@+id/spnCT"
@@ -84,38 +69,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/shape_email"
-                android:padding="15dp"
-                android:spinnerMode="dropdown"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/black"
-                android:textColorHint="#79000000" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:padding="10dp"
-                android:text="@string/MaTT"
+                android:spinnerMode="dropdown"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/black"
                 android:textColorHint="#79000000" />
 
-            <EditText
-                android:id="@+id/spnTT"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:background="@drawable/shape_email"
-                android:padding="10dp"
-                android:spinnerMode="dropdown"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/black"
-                android:textColorHint="#79000000" />
             <Button
                 android:id="@+id/btnTaoPVC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/black"

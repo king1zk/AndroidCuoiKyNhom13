@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,6 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.myapplication.DBHelper;
+import com.example.myapplication.Model.VatTu;
+import com.example.myapplication.R;
 
 import java.util.ArrayList;
 

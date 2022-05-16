@@ -8,6 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Model.ChiTietPVC;
+import com.example.myapplication.Model.CongTrinh;
+import com.example.myapplication.Model.PhieuVanChuyen;
+import com.example.myapplication.Model.VatTu;
+import com.example.myapplication.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;

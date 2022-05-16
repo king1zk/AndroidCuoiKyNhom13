@@ -1,27 +1,21 @@
-package com.example.myapplication;
+package com.example.myapplication.Model;
 
-public class KH {
+import java.io.Serializable;
+
+public class KH implements Serializable {
     int maKH;
-    String tenKH, email,sdt,maPVC;
+    String tenKH, email,sdt;
 
     public KH() {
     }
 
-    public KH(int maKH, String tenKH, String email, String sdt,String maPVC) {
+    public KH(int maKH, String tenKH, String email, String sdt) {
         this.maKH = maKH;
         this.tenKH = tenKH;
         this.email = email;
         this.sdt = sdt;
-        this.maPVC=maPVC;
     }
 
-    public String getMaPVC() {
-        return maPVC;
-    }
-
-    public void setMaPVC(String maPVC) {
-        this.maPVC = maPVC;
-    }
 
     public int getMaKH() {
         return maKH;

@@ -14,12 +14,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.myapplication.Adapter.CustomAdapter_CTVC;
+import com.example.myapplication.Model.ChiTietPVC;
+
 import java.util.ArrayList;
 
 public class ChiTietPVCActivity extends AppCompatActivity {
 
     DBHelper DBhelper;
-    ImageView btnReturn,btnmap;
+    ImageView btnmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,6 @@ public class ChiTietPVCActivity extends AppCompatActivity {
         // GET THONG TIN VT
         ImageButton imgbtn_addctvc = findViewById(R.id.imgbtn_addctvc);
         ListView listView = findViewById(R.id.lvCTVC);
-        btnReturn = findViewById(R.id.btnReturn);
         btnmap=findViewById(R.id.btnmap);
 
         ArrayList<ChiTietPVC> ArrCTVC = new ArrayList<>();
@@ -39,20 +41,8 @@ public class ChiTietPVCActivity extends AppCompatActivity {
             ChiTietPVC CTVC = new ChiTietPVC(dt.getString(0), dt.getInt(1), dt.getInt(2), dt.getInt(3));
             ArrCTVC.add(CTVC);
         }
-        CustomAdapter_CTVC adapter = new CustomAdapter_CTVC(ArrCTVC);
+        CustomAdapter_CTVC adapter = new CustomAdapter_CTVC(ArrCTVC, this, R.layout.item_ctvc);
         listView.setAdapter(adapter);
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Log.d("magiaovien" , "ggg");
-//                Toast.makeText(DSGVActivity.this,ArrGV.get(position).getID(),Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(DSGVActivity.this, DSMHActivity.class);
-//                GiangVien GV= (GiangVien) ArrGV.get(position);
-//                intent.putExtra("message", ArrGV.get(position).getID());
-//                startActivity(intent);
-//            }
-//        });
-
 
         imgbtn_addctvc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,12 +51,7 @@ public class ChiTietPVCActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnReturn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ChiTietPVCActivity.this, MainActivity.class));
-            }
-        });
+
         btnmap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +70,7 @@ public class ChiTietPVCActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.memu_home:
-                Intent intent =new Intent(this, MainActivity.class);
+                Intent intent =new Intent(this, dashboard.class);
                 startActivity(intent);
                 break;
         }
