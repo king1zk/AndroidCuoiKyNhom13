@@ -18,8 +18,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.Model.CongTrinh;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,6 +37,7 @@ public class ThemPVCActivity extends AppCompatActivity {
 
 
         EditText edtMaPVC = findViewById(R.id.edtMaPVC);
+        EditText edtTT=findViewById(R.id.spnTT);
         Button btnadd = findViewById(R.id.btnTaoPVC);
         Spinner gvspinner = findViewById(R.id.spnCT);
 
@@ -56,6 +55,9 @@ public class ThemPVCActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 selected_position = position;
+                //đối số postion là vị trí phần tử trong list Data
+//                String msg = "position :" + position + " value :" + dsgiangvien.get(position);
+//                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -65,41 +67,56 @@ public class ThemPVCActivity extends AppCompatActivity {
         });
 
         btnadd.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
                 DatePicker ngaygiao = findViewById(R.id.dpCT);
+
                 int day = ngaygiao.getDayOfMonth();
                 int month = ngaygiao.getMonth() + 1;
                 int year = ngaygiao.getYear();
 
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String ngaychon = String.valueOf(year) + "-" + String.valueOf(month) + "-" + String.valueOf(day);
-
-                Date date2 = Calendar.getInstance().getTime();
-                String strtodate = dateFormat.format(date2);
-                Boolean flagValid = true;
-                String MaPVC = edtMaPVC.getText().toString();
-                if (edtMaPVC.getText().toString().trim().isEmpty()) {
-                    edtMaPVC.setError("Mã phiếu vận chuyển không được trống");
-                    flagValid = false;
-                }
-
                 try {
-                    if (flagValid) {
-                        // Kiểm tra xem ngày giao có lớn hơn ngày hiện tại không
-                        try {
-                            DBhelper.QueryData("insert into PVC values('" + MaPVC + "','" + ngaychon+ "','" + dsCT.get(selected_position).getMaCT() + "')");
-                            Toast.makeText(getApplicationContext(), "Thêm thành công!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(ThemPVCActivity.this, PhieuVanChuyenActivity.class);
-                            startActivity(intent);
-                        } catch (Exception ex) {
-                            Toast.makeText(getApplicationContext(), "Lỗi ghi CSDL! Không thể thêm!", Toast.LENGTH_SHORT).show();
+                    Date ngay = new SimpleDateFormat("yyyy-MM-dd").parse(ngaychon);
+                    String date = new SimpleDateFormat("yyyy-MM-dd").format(ngay);
+                    Date date2 = Calendar.getInstance().getTime();
+                    String strtodate = dateFormat.format(date2);
+                    Boolean flagValid = true;
+                    String MaPVC = edtMaPVC.getText().toString();
+                    String TT=edtTT.getText().toString();
+                    if (edtMaPVC.getText().toString().trim().isEmpty()) {
+                        edtMaPVC.setError("Mã phiếu vận chuyển không được trống");
+                        flagValid = false;
+                    }
 
+                    try {
+                        if (flagValid) {
+                            // Kiểm tra xem ngày giao có lớn hơn ngày hiện tại không
+                            if (dateFormat.parse(date).before(dateFormat.parse(strtodate)) || dateFormat.parse(date).equals(dateFormat.parse(strtodate))) {
+                                Toast.makeText(getApplicationContext(), "Ngày giao phải lớn hơn ngày hiện tại", Toast.LENGTH_SHORT).show();
+                            } else {
+                                try {
+                                    DBhelper.QueryData("insert into PVC values('" + MaPVC + "','" + date + "','" + dsCT.get(selected_position).getTenCT() + "','" +TT+ "')");
+                                    Toast.makeText(getApplicationContext(), "Thêm thành công!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(ThemPVCActivity.this, PhieuVanChuyenActivity.class);
+                                    startActivity(intent);
+                                } catch (Exception ex) {
+                                    Toast.makeText(getApplicationContext(), "Lỗi ghi CSDL! Không thể thêm!", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
-                } catch (Exception e) {
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                } catch (ParseException e) {
                     e.printStackTrace();
                 }
+
+
+
             }
         });
     }

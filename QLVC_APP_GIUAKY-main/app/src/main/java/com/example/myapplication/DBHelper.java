@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,11 +9,9 @@ import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.Nullable;
 
-import com.example.myapplication.Model.ChiTietPVC;
-import com.example.myapplication.Model.CongTrinh;
-import com.example.myapplication.Model.KH;
-import com.example.myapplication.Model.PhieuVanChuyen;
-import com.example.myapplication.Model.VatTu;
+import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class DBHelper extends SQLiteOpenHelper {
 // factory con trỏ dùng để duyêt dữ liệu
@@ -63,6 +62,35 @@ public class DBHelper extends SQLiteOpenHelper {
         statement.executeInsert();
     }
 
+    public Boolean InsertSignUp(String username, String password){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username",username);
+        contentValues.put("password",password);
+        long resutl = db.insert("user",null,contentValues);
+        if (resutl == -1 ) return false;
+        else
+            return true;
+    }
+
+    public boolean checkusername(String username){
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from user where username = ?", new String[] {username});
+        if (cursor.getCount()>0)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean checkusernamepassword(String username, String password){
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("Select * from user where username = ? and password = ?", new String[] {username,password});
+        if (cursor.getCount()>0)
+            return true;
+        else
+            return false;
+    }
+
     public void deleteCT(CongTrinh ct) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "DELETE FROM congtrinh WHERE maCT='" + ct.getMaCT() + "'";
@@ -102,7 +130,16 @@ public class DBHelper extends SQLiteOpenHelper {
         sql += "  WHERE maCT  = '" + maCT + "'";
         db.execSQL(sql);
     }
-
+//    public void updateVT(int maVT, String tenVT, String dvTinh, float giaVC, byte[] hinh) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        String sql = "Update  vattu  set ";
+//        sql += "tenVT  = '" + tenVT + "' ,  ";
+//        sql += "dvTinh  = '" + dvTinh + "'";
+//        sql += "giaVC  = '" + giaVC + "'";
+//        sql += "hinh  = '" + hinh + "'";
+//        sql += "  WHERE maVT  = '" + maVT + "'";
+//        db.execSQL(sql);
+//    }
 public void updateVT(String tenVT, String dvTinh, Float giaVC,byte[] hinh,int maVT) {
     SQLiteDatabase db = getWritableDatabase();
     String sql = "Update vattu set tenVT= ?,dvTinh=?,giaVC =?,hinh= ? where maVT=?";
@@ -115,16 +152,72 @@ public void updateVT(String tenVT, String dvTinh, Float giaVC,byte[] hinh,int ma
     statement.bindLong(5, maVT);
     statement.executeUpdateDelete();
 }
-    public void updateKH(String hoTenKH, String Email, String Sdt,int maKH) {
+    public void updateKH(String hoTenKH, String Email, String Sdt,String maPVC,int maKH) {
         SQLiteDatabase db = getWritableDatabase();
-        String sql = "Update KH set hoTenKH= ?,email=?,sdt =? where maKH=?";
+        String sql = "Update KH set hoTenKH= ?,email=?,sdt =?,maPVC=? where maKH=?";
         SQLiteStatement statement = db.compileStatement(sql);
         statement.clearBindings();
         statement.bindString(1, hoTenKH);
         statement.bindString(2, Email);
         statement.bindString(3, Sdt);
-        statement.bindLong(4, maKH);
+        statement.bindString(4,maPVC );
+        statement.bindLong(5, maKH);
         statement.executeUpdateDelete();
+    }
+    public void updatePVC(String maPVC, Date ngayVC, String maCT) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "Update  vattu  set ";
+        sql += "ngayVC  = '" + ngayVC + "' ,  ";
+        sql += "maCT  = '" + maCT + "'";
+        sql += "  WHERE maPVC  = '" + maPVC + "'";
+        db.execSQL(sql);
+    }
+    public void updateCTPVC(String maPVC,int maVT,int soluong,int culy, Date ngayVC) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "Update  vattu  set ";
+        sql += "soluong  = '" + soluong + "' ,  ";
+        sql += "culy  = '" + culy + "'";
+        sql += "ngayVC  = '" + ngayVC + "'";
+        sql += "  WHERE maPVC  = '" + maPVC + "'";
+        sql += "  WHERE maVT  = '" + maVT + "'";
+        db.execSQL(sql);
+    }
+
+    public ArrayList<Float> queryYdata(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query1 =  "SELECT SUM((soluong*culy*giaVC)) FROM chitietPVC \n" +
+                "inner join vattu on vattu.maVT = chitietPVC.maVT \n" +
+                "inner join PVC on PVC.maPVC = chitietPVC.maPVC \n" +
+                "group by ngayVC";
+        Cursor dt = db.rawQuery(query1,null);
+
+        ArrayList<Float> ydata = new ArrayList<Float>();
+        ArrayList<Integer> Xdata = new ArrayList<Integer>();
+
+        while (dt.moveToNext()){
+//
+            ydata.add(dt.getFloat(0));
+        }
+        dt.close();
+        return  ydata;
+    }
+
+    public ArrayList<Float> queryXdata(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query1 =  "SELECT strftime('%m', ngayVC) FROM chitietPVC\n" +
+                "inner join vattu on vattu.maVT = chitietPVC.maVT\n" +
+                "inner join PVC on PVC.maPVC = chitietPVC.maPVC\n" +
+                "group by strftime('%m', ngayVC)";
+        Cursor dt = db.rawQuery(query1,null);
+
+        ArrayList<Float> Xdata = new ArrayList<Float>();
+        for(dt.moveToFirst(); !dt.isAfterLast(); dt.moveToNext()){
+            Xdata.add(dt.getFloat(0));
+        }
+        dt.close();
+        return Xdata;
     }
 
     @Override

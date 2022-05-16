@@ -10,11 +10,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
-
-import com.example.myapplication.Adapter.CustomAdapter_CongTrinh;
-import com.example.myapplication.Model.CongTrinh;
 
 import java.util.ArrayList;
 
@@ -23,6 +22,8 @@ import java.util.ArrayList;
 public class CongTrinhActivity extends AppCompatActivity {
 
     DBHelper DBhelper;
+    ImageView btnReturn1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,7 @@ public class CongTrinhActivity extends AppCompatActivity {
         // GET THONG TIN CT
         ImageButton imgbtn_addct = findViewById(R.id.imgbtn_addct);
         ListView listViewCT = findViewById(R.id.lvDSCT);
+        btnReturn1 = findViewById(R.id.btnReturn1);
 
         ArrayList<CongTrinh> ArrCT = new ArrayList<>();
         DBhelper = new DBHelper(this, "qlvc.sqlite", null, 1);
@@ -39,22 +41,39 @@ public class CongTrinhActivity extends AppCompatActivity {
             CongTrinh CT = new CongTrinh(dt.getString(0), dt.getString(1), dt.getString(2));
             ArrCT.add(CT);
         }
-        CustomAdapter_CongTrinh adapter = new CustomAdapter_CongTrinh(ArrCT, this, R.layout.item_dsct );
+        CustomAdapter_CongTrinh adapter = new CustomAdapter_CongTrinh(ArrCT);
         listViewCT.setAdapter(adapter);
-
-//        listViewCT.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                //POSITION = position;
-//                Intent intent = new Intent(CongTrinhActivity.this, SuaCongTrinhActivity.class);
+//                Log.d("magiaovien" , "ggg");
+//                Toast.makeText(DSGVActivity.this,ArrGV.get(position).getID(),Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(DSGVActivity.this, DSMHActivity.class);
+//                GiangVien GV= (GiangVien) ArrGV.get(position);
+//                intent.putExtra("message", ArrGV.get(position).getID());
 //                startActivity(intent);
 //            }
 //        });
+
+        listViewCT.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //POSITION = position;
+                Intent intent = new Intent(CongTrinhActivity.this, SuaCongTrinhActivity.class);
+                startActivity(intent);
+            }
+        });
         imgbtn_addct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CongTrinhActivity.this, ThemCTActivity.class);
                 startActivity(intent);
+            }
+        });
+        btnReturn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CongTrinhActivity.this, MainActivity.class));
             }
         });
     }

@@ -12,14 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import static com.example.myapplication.ext.ConstExt.POSITION;
-
-import com.example.myapplication.Adapter.CustomAdapter_CongTrinh;
-import com.example.myapplication.Model.CongTrinh;
 
 public class SuaCongTrinhActivity extends AppCompatActivity {
 
@@ -27,6 +25,7 @@ public class SuaCongTrinhActivity extends AppCompatActivity {
     EditText edtTenCT, edtDiaChi;
     Button btnSuaCT;
     String maCT;
+    ImageView btnReturn4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class SuaCongTrinhActivity extends AppCompatActivity {
             CongTrinh CT = new CongTrinh(dt.getString(0), dt.getString(1), dt.getString(2));
             ArrCT.add(CT);
         }
-        CustomAdapter_CongTrinh adapter = new CustomAdapter_CongTrinh(ArrCT, this, R.layout.item_dsct);
+        CustomAdapter_CongTrinh adapter = new CustomAdapter_CongTrinh(ArrCT);
         CongTrinh ct = (CongTrinh) adapter.getItem(POSITION);
         edtTenCT.setText(ct.getTenCT());
         edtDiaChi.setText(ct.getDiaChi());
@@ -83,12 +82,20 @@ public class SuaCongTrinhActivity extends AppCompatActivity {
                 }
             }
         });
+        btnReturn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SuaCongTrinhActivity.this, MainActivity.class));
+            }
+        });
+
     }
 
     private void create() {
         edtTenCT = findViewById(R.id.edtTenCT);
         edtDiaChi = findViewById(R.id.edtDiaChi);
         btnSuaCT = findViewById(R.id.btnSuaCT);
+        btnReturn4 = findViewById(R.id.btnReturn4);
     }
     @Override
     public boolean onCreatePanelMenu(int featureId, @NonNull Menu menu) {
